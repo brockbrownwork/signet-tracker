@@ -18,6 +18,13 @@ io.on('connection', socket => {
 
 io.listen(3001);
 
+let randomMessages = [
+  "Hey!",
+  "Buddy!",
+  "*whistle*"
+]
+
 setInterval(() => {
-  io.emit('message', new Date().toISOString());
+  let randomMessage = randomMessages[Math.floor(Math.random() * randomMessages.length)];
+  io.emit('message', randomMessage);
 }, 1000);

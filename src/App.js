@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
+import connectedGnome from './connected_gnome.jfif';
 import './App.css';
 import io from 'socket.io-client';
 
@@ -33,7 +34,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={connectedGnome} className="App-logo" alt="logo" />
         <p>Connected: { '' + isConnected }</p>
         <p>Last message: { lastMessage || '-' }</p>
         <button onClick={ sendMessage }>Say hello!</button>
