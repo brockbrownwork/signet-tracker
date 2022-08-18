@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Button, Alert} from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -43,32 +44,27 @@ function App() {
   }
 
   return (
-    <div className="App">
-        <header className="App-header">
-          <div class = 'App'>
-          <Container>
-          <Row>
-            <h1>Welcome to <span class = 'rainbow-text'>SPINTHEGNO.ME</span></h1>
-          </Row>
-          <Row>
-            <img src={breakdancingGnome} className="Spinning-gnome" alt="logo"/>
-            {connectedGnomeText}
-          </Row>
-          <Row>
-            <img src = {connectedGnomePicture} width = '10%'/>
-          </Row>
-          <Row>
-            <Col>
-              <p>Last message: { lastMessage || '-' }</p>
-            </Col>
-          <Col>
-          <button onClick={ sendMessage }>Say hello!</button>
-          </Col>
-          </Row>
-        </Container>
-        </div>
-        </header>
-    </div>
+    <Container fluid>
+      <Row>
+        <Alert variant = 'primary'>Alert!!! WEE WOO WEE WOO</Alert>
+        <h1>Welcome to <span className = 'rainbow-text'>SPINTHEGNO.ME</span></h1>
+      </Row>
+      <Row>
+        <img src={breakdancingGnome} className="Spinning-gnome" alt="logo"/>
+      </Row>
+      <Row>
+        {connectedGnomeText}
+        <img src = {connectedGnomePicture} width = '10%'/>
+      </Row>
+      <Row>
+        <Col md = {8}>
+          <p>Last message: { lastMessage || '-' }</p>
+        </Col>
+      <Col md = {1}>
+        <Button onClick={ sendMessage }>Say hello!</Button>
+      </Col>
+      </Row>
+    </Container>
   );
 }
 
