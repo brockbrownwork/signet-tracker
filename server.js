@@ -21,7 +21,8 @@ io.listen(3001);
 let randomMessages = [
   "Hey!",
   "Buddy!",
-  "*whistle*"
+  "*whistle*",
+  "Yoo-hoo!"
 ]
 
 setInterval(() => {

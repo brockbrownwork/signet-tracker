@@ -1,19 +1,40 @@
-.App {
-  text-align: center;
+body{
+  background-color: rgb(207, 207, 207);
 }
 
-.App-logo {
-  height: 40vmin;
+.rainbow-text {
+  background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+h1 {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+#connected-gnome {
+  color: green
+}
+#disconnected-gnome {
+  color: red
+}
+
+.App {
+}
+
+.Spinning-gnome {
+  width: 20%;
   pointer-events: none;
+  margin:10%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
+  .Spinning-gnome {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,7 +43,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
