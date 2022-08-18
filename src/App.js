@@ -23,7 +23,7 @@ const getRandomProperty = (obj) => {
 const gnomeImages = importAll(require.context('./images/gnomes', false, /\.(jfif|png|jpe?g|svg|gif)$/));
 const spinningGnome = getRandomProperty(gnomeImages);
 
-const socket = io('localhost:3001');
+const socket = io('10.250.200.126:3001');
 const disconnectedGnomeMarkup = <p><span style = {{color:'red'}}>AUGH!</span> disconnected.</p>
 const connectedGnomeMarkup = <p><span style = {{color:'green'}}>connected ;)</span></p>
 function App() {
