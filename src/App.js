@@ -44,17 +44,21 @@ function App() {
   }
 
   return (
-    <Container fluid>
+    <Container style = {{textAlign:'center'}}>
       <Row>
         <Alert variant = 'primary'>Alert!!! WEE WOO WEE WOO</Alert>
         <h1>Welcome to <span className = 'rainbow-text'>SPINTHEGNO.ME</span></h1>
       </Row>
       <Row>
-        <img src={breakdancingGnome} className="Spinning-gnome" alt="logo"/>
+        <Col className="text-center">
+          <img src={breakdancingGnome} className="Spinning-gnome" alt="logo"/>
+        </Col>
       </Row>
       <Row>
-        {connectedGnomeText}
-        <img src = {connectedGnomePicture} width = '10%'/>
+        <Col>
+          {connectedGnomeText}
+          <img src = {connectedGnomePicture} width = '10%'/>
+        </Col>
       </Row>
       <Row>
         <Col md = {8}>
