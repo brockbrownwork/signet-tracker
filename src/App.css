@@ -1,4 +1,4 @@
-body{
+body {
   background-color: rgb(133, 255, 129);
 }
 
@@ -19,8 +19,6 @@ h1 {
   color: red
 }
 
-.App {
-}
 
 .Spinning-gnome {
   width: "20px";

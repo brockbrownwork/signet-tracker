@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import connectedGnome from './connected_gnome.jfif';
 import disconnectedGnome from './disconnected_gnome.jfif';
 import './App.css';
+
 import io from 'socket.io-client';
 
 function importAll(r) {
@@ -19,7 +20,7 @@ const getRandomProperty = (obj) => {
   return obj[keys[Math.floor(Math.random() * keys.length)]];
 };
 
-const gnomeImages = importAll(require.context('./images/gnomes', false, /\.(jfif|png|jpe?g|svg)$/));
+const gnomeImages = importAll(require.context('./images/gnomes', false, /\.(jfif|png|jpe?g|svg|gif)$/));
 const spinningGnome = getRandomProperty(gnomeImages);
 
 const socket = io('localhost:3001');
@@ -38,8 +39,8 @@ function App() {
     });
     socket.on('disconnect', () => {
       setIsConnected(false);
-      setConnectedGnomeText(disconnectedGnome);
-      setConnectedGnomePicture(disconnectedGnomeMarkup);
+      setConnectedGnomeText(disconnectedGnomeMarkup);
+      setConnectedGnomePicture(disconnectedGnome);
     });
     socket.on('message', data => {
       setLastMessage(data);
@@ -54,10 +55,15 @@ function App() {
   const sendMessage = () => {
     socket.emit('hello!');
   }
+  const dancingGnome = <Col xs lg = "2"><img width = '100px' src = {gnomeImages['santa-fun.gif']}/></Col>;
   return (
     <Container style = {{textAlign:'center'}}>
       <Row>
+        {dancingGnome}
+        <Col>
         <h1>Welcome to <span className = 'rainbow-text'>SPINTHEGNO.ME</span></h1>
+        </Col>
+        {dancingGnome}
       </Row>
       <Row>
         <Col className="text-center">
@@ -75,7 +81,7 @@ function App() {
           <p>Last message: { lastMessage || '-' }</p>
         </Col>
       <Col md = {1}>
-        <Button onClick={ sendMessage }>Say hello!</Button>
+        <button onClick={ sendMessage }>Say hello!</button>
       </Col>
       </Row>
     </Container>
