@@ -3,11 +3,13 @@ import {Button, Alert} from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import keystrokeListener from './components/keystrokeListener';
 import connectedGnome from './connected_gnome.jfif';
 import disconnectedGnome from './disconnected_gnome.jfif';
 import './App.css';
 
 import io from 'socket.io-client';
+import KeystrokeListener from './components/keystrokeListener';
 
 function importAll(r) {
   let images = {};
@@ -59,11 +61,10 @@ function App() {
   return (
     <Container style = {{textAlign:'center'}}>
       <Row>
-        {dancingGnome}
         <Col>
+        <KeystrokeListener onScan = {(scanResult) => console.log("Hey, look at this:", scanResult)}/>
         <h1>Welcome to <span className = 'rainbow-text'>SPINTHEGNO.ME</span></h1>
         </Col>
-        {dancingGnome}
       </Row>
       <Row>
         <Col className="text-center">
