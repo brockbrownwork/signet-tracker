@@ -38,7 +38,7 @@ function App() {
     });
     socket.on('disconnect', () => {
       setIsConnected(false);
-      setConnectedGnomeText();
+      setConnectedGnomeText(disconnectedGnome);
       setConnectedGnomePicture(disconnectedGnomeMarkup);
     });
     socket.on('message', data => {
@@ -54,7 +54,6 @@ function App() {
   const sendMessage = () => {
     socket.emit('hello!');
   }
-const thing = <p>test</p>;
   return (
     <Container style = {{textAlign:'center'}}>
       <Row>
@@ -62,7 +61,6 @@ const thing = <p>test</p>;
       </Row>
       <Row>
         <Col className="text-center">
-          {thing}
           <img src={spinningGnome} className="Spinning-gnome" alt="logo"/>
         </Col>
       </Row>
