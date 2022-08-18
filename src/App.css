@@ -25,7 +25,7 @@ h1 {
 .Spinning-gnome {
   width: "20px";
   pointer-events: none;
-  margin:10%;
+  margin:5%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
