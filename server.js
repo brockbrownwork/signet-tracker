@@ -14,6 +14,10 @@ io.on('connection', socket => {
   socket.on('disconnect', () => {
     console.log(`disconnect: ${socket.id}`);
   });
+
+  socket.on('scan', (upc) => {
+    console.log("scan received:", upc);
+  });
 });
 
 io.listen(3001);
@@ -28,4 +32,4 @@ let randomMessages = [
 setInterval(() => {
   let randomMessage = randomMessages[Math.floor(Math.random() * randomMessages.length)];
   io.emit('bulletinBoard', randomMessage);
-}, 1000);
+}, 5000);

@@ -27,6 +27,7 @@ function App() {
   const [lastMessage, setLastMessage] = useState(null);
   const [bulletinBoard, setBulletinBoard] = useState('');
   document.body.style = 'background: rgb(200, 200, 200)';
+  document.title = 'Signet Tracking';
   useEffect(() => {
     socket.on('connect', () => {
       setIsConnected(true);
@@ -56,15 +57,15 @@ function App() {
 
   const onScan = (scanResult) => {
     console.log("Here's the scan result: ", scanResult);
+    socket.emit(scanResult);
   };
   return (
     <div>
     <Container style = {{textAlign:'center', verticalAlign: 'center'}}>
       <Row>
         <Col>
-        <KeystrokeListener onScan = {onScan} style = {{'margin':'20px'}}/>
         <img src = {signetLogo} width = "30%"/>
-        <h2>Tracking System</h2>
+        <h2 style = {{paddingTop: "20px", paddingBottom:"5px"}}>Tracking System</h2>
         </Col>
         <Row>
           <p>Bulletin board: {bulletinBoard}</p>
@@ -76,9 +77,13 @@ function App() {
       </Row>
       <Row>
         <Col>
-          {/* <p>Last message: { lastMessage? lastMessage: '-' }</p> */}
         <button onClick={ sendMessage }>Say hello!</button>
       </Col>
+      </Row>
+      <Row>
+        <Col>
+          <KeystrokeListener onScan = {onScan}/>
+        </Col>
       </Row>
     </Container>
     </div>
