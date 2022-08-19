@@ -1,10 +1,12 @@
-body {
-  background-color: rgb(133, 255, 129);
-}
+/* KeystrokeListener {
+  margin: 20px;
+} */
+
 
 .rainbow-text {
   background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
 }
 

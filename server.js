@@ -27,5 +27,5 @@ let randomMessages = [
 
 setInterval(() => {
   let randomMessage = randomMessages[Math.floor(Math.random() * randomMessages.length)];
-  io.emit('message', randomMessage);
+  io.emit('bulletinBoard', randomMessage);
 }, 1000);

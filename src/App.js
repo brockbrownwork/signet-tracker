@@ -3,9 +3,8 @@ import {Button, Alert} from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import keystrokeListener from './components/keystrokeListener';
-import connectedGnome from './connected_gnome.jfif';
-import disconnectedGnome from './disconnected_gnome.jfif';
+
+import signetLogo from './images/signet.png'
 import './App.css';
 
 import io from 'socket.io-client';
@@ -22,31 +21,28 @@ const getRandomProperty = (obj) => {
   return obj[keys[Math.floor(Math.random() * keys.length)]];
 };
 
-const gnomeImages = importAll(require.context('./images/gnomes', false, /\.(jfif|png|jpe?g|svg|gif)$/));
-const spinningGnome = getRandomProperty(gnomeImages);
-
 const socket = io('10.250.200.126:3001');
-const disconnectedGnomeMarkup = <p><span style = {{color:'red'}}>AUGH!</span> disconnected.</p>
-const connectedGnomeMarkup = <p><span style = {{color:'green'}}>connected ;)</span></p>
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [lastMessage, setLastMessage] = useState(null);
-  const [connectedGnomePicture, setConnectedGnomePicture] = useState(disconnectedGnome);
-  const [connectedGnomeText, setConnectedGnomeText] = useState(disconnectedGnomeMarkup);
+  const [bulletinBoard, setBulletinBoard] = useState('');
+  document.body.style = 'background: rgb(200, 200, 200)';
   useEffect(() => {
     socket.on('connect', () => {
       setIsConnected(true);
-      setConnectedGnomePicture(connectedGnome);
-      setConnectedGnomeText(connectedGnomeMarkup);
+      console.log("Connected!");
     });
     socket.on('disconnect', () => {
       setIsConnected(false);
-      setConnectedGnomeText(disconnectedGnomeMarkup);
-      setConnectedGnomePicture(disconnectedGnome);
+      console.log("Disconnected.");
     });
     socket.on('message', data => {
       setLastMessage(data);
     });
+    socket.on('bulletinBoard', data => {
+      setBulletinBoard(data);
+    });
+    
     return () => {
       socket.off('connect');
       socket.off('disconnect');
@@ -57,35 +53,35 @@ function App() {
   const sendMessage = () => {
     socket.emit('hello!');
   }
-  const dancingGnome = <Col xs lg = "2"><img width = '100px' src = {gnomeImages['santa-fun.gif']}/></Col>;
+
+  const onScan = (scanResult) => {
+    console.log("Here's the scan result: ", scanResult);
+  };
   return (
-    <Container style = {{textAlign:'center'}}>
+    <div>
+    <Container style = {{textAlign:'center', verticalAlign: 'center'}}>
       <Row>
         <Col>
-        <KeystrokeListener onScan = {(scanResult) => console.log("Hey, look at this:", scanResult)}/>
-        <h1>Welcome to <span className = 'rainbow-text'>SPINTHEGNO.ME</span></h1>
+        <KeystrokeListener onScan = {onScan} style = {{'margin':'20px'}}/>
+        <img src = {signetLogo} width = "30%"/>
+        <h2>Tracking System</h2>
         </Col>
+        <Row>
+          <p>Bulletin board: {bulletinBoard}</p>
+        </Row>
       </Row>
       <Row>
         <Col className="text-center">
-          <img src={spinningGnome} className="Spinning-gnome" alt="logo"/>
         </Col>
       </Row>
       <Row>
         <Col>
-          {connectedGnomeText}
-          <img src = {connectedGnomePicture} width = '10%'/>
-        </Col>
-      </Row>
-      <Row>
-        <Col md = {8}>
-          <p>Last message: { lastMessage || '-' }</p>
-        </Col>
-      <Col md = {1}>
+          {/* <p>Last message: { lastMessage? lastMessage: '-' }</p> */}
         <button onClick={ sendMessage }>Say hello!</button>
       </Col>
       </Row>
     </Container>
+    </div>
   );
 }
 

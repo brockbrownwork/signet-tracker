@@ -47,13 +47,18 @@ function KeystrokeListener(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [keystroke_debug]); // TODO: why doesn't this react? Maybe it's because it needs to be in the actual effect.
+  });
   if (keystroke_debug) {
-  return(<p class = 'center'>The <i>listener</i> lives here. &#128066; &#128585;</p>);
+  return (
+  	<p class = 'center'>
+	The <i>listener</i> lives here. &#128066; &#128585;
+	</p>
+	);
   } else {
-	  return (<div>
-      Last scan: {state.lastScan? state.lastScan: 'no scans yet :)'}
-    </div>);
+	  return (
+	  	<div style = {{margin: props.margin || '20px'}}>
+      	Last scan: {state.lastScan || 'no scans yet :)'}
+    	</div>);
   }
 }
 
