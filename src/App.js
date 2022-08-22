@@ -57,7 +57,7 @@ function App() {
 
   const onScan = (scanResult) => {
     console.log("Here's the scan result: ", scanResult);
-    socket.emit(scanResult);
+    socket.emit("scan", scanResult);
   };
   return (
     <div>
