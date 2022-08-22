@@ -64,8 +64,8 @@ function App() {
     <Container style = {{textAlign:'center', verticalAlign: 'center'}}>
       <Row>
         <Col>
-        <img src = {signetLogo} width = "30%" style = {{paddingTop:"2.5%"}}/>
-        <h2 style = {{paddingTop: "20px", paddingBottom:"5px"}}>Tracking System</h2>
+          <img src = {signetLogo} width = "30%" style = {{paddingTop:"2.5%"}}/>
+          <h2 style = {{paddingTop: "20px", paddingBottom:"5px"}}>Tracking System</h2>
         </Col>
         <Row>
           <p>Bulletin board: {bulletinBoard}</p>
@@ -77,7 +77,7 @@ function App() {
       </Row>
       <Row>
         <Col>
-        <button onClick={ sendMessage }>Say hello!</button>
+          <button onClick={ sendMessage }>Say hello!</button>
       </Col>
       </Row>
       <Row>
