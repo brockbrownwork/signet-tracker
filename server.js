@@ -1,3 +1,11 @@
+try {
+  const {test} = require("./src/db.js");
+  console.log("test", test);
+  test();
+} catch (error) {
+  console.log('whoops:', error);
+}
+
 const io = require('socket.io')({
   cors: {
     origin: '*'

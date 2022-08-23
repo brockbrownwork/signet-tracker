@@ -10,6 +10,8 @@ import './App.css';
 import io from 'socket.io-client';
 import KeystrokeListener from './components/keystrokeListener';
 
+test();
+
 function importAll(r) {
   let images = {};
   r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
