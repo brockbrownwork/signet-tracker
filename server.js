@@ -1,4 +1,4 @@
-const {test} = require("./src/db.js");
+const {test} = require("./db.js");
 
 const io = require('socket.io')({
   cors: {
@@ -7,7 +7,7 @@ const io = require('socket.io')({
 });
 
 io.on('connection', socket => {
-  console.log(`connect: ${socket.id}`);
+  console.log(`user connected to server: ${socket.id}`);
 
   socket.on('hello!', () => {
     console.log(`hello from ${socket.id}`);
