@@ -13,8 +13,9 @@ const userSchema = new Schema({
         minLength: 5,
         validate: {
             validator: (someEmail) => {
-                return someEmail.contains('@');
-            }
+                return someEmail.includes('@');
+            },
+            message: (props) =>  `That email address is no good: ${props.value}`
         }
     },
     age: {
@@ -22,7 +23,10 @@ const userSchema = new Schema({
         min: 1,
         max: 150
     },
-    bestFriend: mongoose.SchemaTypes.ObjectId,
+    bestFriend: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "User"
+    },
     hobbies: [String],
     address: addressSchema,
     createdAt: {
@@ -35,5 +39,9 @@ const userSchema = new Schema({
         default: () => Date.now()
     }
 });
+
+userSchema.methods.sayHi = function() {
+    console.log(`Hi, my name is ${this.name}`);
+}
 
 module.exports = model("User", userSchema);

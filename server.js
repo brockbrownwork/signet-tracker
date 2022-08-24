@@ -1,5 +1,7 @@
 const {test} = require("./db.js");
 
+test();
+
 const io = require('socket.io')({
   cors: {
     origin: '*'
