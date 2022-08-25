@@ -17,6 +17,7 @@ io.on('connection', socket => {
 
   socket.on('hello!', () => {
     console.log(`hello from ${socket.id}`);
+    io.to(socket.id).emit("bulletinBoard", "Hello out there!")
   });
 
   socket.on('disconnect', () => {

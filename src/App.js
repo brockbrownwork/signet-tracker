@@ -24,7 +24,6 @@ const getRandomProperty = (obj) => {
 const socket = io('10.250.200.126:3001');
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
-  const [lastMessage, setLastMessage] = useState(null);
   const [bulletinBoard, setBulletinBoard] = useState('');
   const [location, setLocation] = useState('cell 1');
   document.body.style = 'background: rgb(200, 200, 200)';
@@ -37,9 +36,6 @@ function App() {
     socket.on('disconnect', () => {
       setIsConnected(false);
       console.log("Disconnected.");
-    });
-    socket.on('message', data => {
-      setLastMessage(data);
     });
     socket.on('bulletinBoard', data => {
       setBulletinBoard(data);
@@ -94,7 +90,7 @@ function App() {
       </Row>
       <Row>
         <Col>
-          <LocationDropdown setLocation = {setLocation}/>
+          <LocationDropdown setLocation = {setLocation} location = {location}/>
         </Col>
       </Row>
     </Container>
