@@ -9,6 +9,7 @@ import './App.css';
 
 import io from 'socket.io-client';
 import KeystrokeListener from './components/keystrokeListener';
+import LocationDropdown from './components/locationDropdown';
 
 function importAll(r) {
   let images = {};
@@ -26,6 +27,7 @@ function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [lastMessage, setLastMessage] = useState(null);
   const [bulletinBoard, setBulletinBoard] = useState('');
+  const [location, setLocation] = useState('cell 1');
   document.body.style = 'background: rgb(200, 200, 200)';
   document.title = 'Signet Tracking';
   useEffect(() => {
@@ -56,8 +58,13 @@ function App() {
   }
 
   const onScan = (scanResult) => {
-    console.log("Here's the scan result: ", scanResult);
-    socket.emit("scan", scanResult);
+    let data = {
+              upc : scanResult,
+              location : location,
+              date : Date.now(),
+              comments: "this is a test of the comments"}
+    console.log("Data before sending:", data)
+    socket.emit("scan", data);
   };
   return (
     <div>
@@ -68,6 +75,7 @@ function App() {
           <h2 style = {{paddingTop: "20px", paddingBottom:"5px"}}>Tracking System</h2>
         </Col>
         <Row>
+          <p>Current location: {location}</p>
           <p>Bulletin board: {bulletinBoard}</p>
         </Row>
       </Row>
@@ -83,6 +91,11 @@ function App() {
       <Row>
         <Col>
           <KeystrokeListener onScan = {onScan}/>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <LocationDropdown setLocation = {setLocation}/>
         </Col>
       </Row>
     </Container>

@@ -11,7 +11,7 @@ const scanSchema = new Schema({
         type: String,
         required: true
     },
-    created : {
+    date : {
         type: Date,
         default: Date.now()
     },

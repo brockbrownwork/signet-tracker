@@ -6,13 +6,18 @@ mongoose.connect(url, () => {
   console.log("connected to mongodb");
 }, (error) => console.error("whoops,", error));
 
+async function dbScan(data) {
+  const scan = Scan(data)
+  await scan.save();
+}
+
 async function test() {
   try {
     console.log("Starts here");
     const scan = Scan({
       upc: 'Disco',
       location: 'Stamps 1'
-      });
+    });
     await scan.save();
     await scan.sayHi();
     console.log(scan);
@@ -22,4 +27,5 @@ async function test() {
   }
 }
 
-module.exports = {test:test};
+
+module.exports = {test:test, dbScan:dbScan};
