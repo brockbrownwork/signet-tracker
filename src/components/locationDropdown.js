@@ -6,10 +6,15 @@ function App(props) {
   let cell_numbers = [1, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13]
   let options = cell_numbers.map(cell => <option key = {uuid()}>cell {cell}</option>)
   useEffect(() => {
+    
   }, []);
 
   return (
-  <select onChange = {(e) => props.setLocation(e.target.value)} value = {props.location}>
+  <select onChange = {
+    (e) => {
+      props.setLocation(e.target.value)
+      e.target.blur()
+      }} value = {props.location}>
     {options}
   </select>
   );

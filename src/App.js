@@ -70,7 +70,7 @@ function App() {
           <h2 style = {{paddingTop: "20px", paddingBottom:"5px"}}>Tracking System</h2>
         </Col>
         <Row>
-          <p>Current location: {location}</p>
+          <p>Current location: <LocationDropdown setLocation = {setLocation} location = {location}/></p>
           <p>Bulletin board: {bulletinBoard}</p>
         </Row>
       </Row>
@@ -85,12 +85,12 @@ function App() {
       </Row>
       <Row>
         <Col>
-          <KeystrokeListener onScan = {onScan}/>
+          <KeystrokeListener onScan = {onScan} location = {location}/>
         </Col>
       </Row>
       <Row>
         <Col>
-          <LocationDropdown setLocation = {setLocation} location = {location}/>
+          <p>filler</p>
         </Col>
       </Row>
     </Container>

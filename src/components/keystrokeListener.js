@@ -55,7 +55,7 @@ function KeystrokeListener(props) {
   } else {
 	  return (
 	  	<div style = {{margin: props.margin || '20px'}}>
-      	Last scan: {state.lastScan || 'no scans yet :)'}
+      	Last scan: {state.lastScan? `${state.lastScan} from ${props.location}`: 'no scans yet :)'}
 		<form onSubmit={(e) => {
 			e.preventDefault();
 			props.onScan(textbox);

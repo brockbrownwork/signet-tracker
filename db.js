@@ -13,19 +13,15 @@ async function dbScan(data) {
 
 async function test() {
   try {
-    console.log("Starts here");
-    const scan = Scan({
-      upc: 'Disco',
-      location: 'Stamps 1'
-    });
-    await scan.save();
-    await scan.sayHi();
-    console.log(scan);
-    console.log("Ends here");
+    
   } catch (error) {
     console.log(error.message);
   }
 }
 
+// if __name__ == "__main__": (sort of)
+if (require.main === module) {
+  myMain();
+}
 
 module.exports = {test:test, dbScan:dbScan};
