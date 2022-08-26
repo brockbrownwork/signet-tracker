@@ -88,11 +88,6 @@ function App() {
           <KeystrokeListener onScan = {onScan} location = {location}/>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <p>filler</p>
-        </Col>
-      </Row>
     </Container>
     </div>
   );

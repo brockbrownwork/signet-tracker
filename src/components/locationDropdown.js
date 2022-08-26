@@ -13,7 +13,7 @@ function App(props) {
   <select onChange = {
     (e) => {
       props.setLocation(e.target.value)
-      e.target.blur()
+      e.target.blur() // blurs so that when the next scan comes in, it doesn't pop open the dropdown
       }} value = {props.location}>
     {options}
   </select>
