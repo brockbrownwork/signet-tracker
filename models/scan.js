@@ -4,8 +4,7 @@ const {Schema, model} = mongoose;
 const scanSchema = new Schema({
     upc : {
         type: String,
-        required: true,
-        minLength: 4
+        required: true
     },
     location : {
         type: String,

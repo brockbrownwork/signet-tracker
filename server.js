@@ -1,4 +1,4 @@
-const {dbScan, test} = require("./db.js");
+const {dbScan, history} = require("./db.js");
 
 const io = require('socket.io')({
   cors: {
@@ -13,6 +13,7 @@ io.on('connection', socket => {
     let {upc, location, date, comments} = data
     console.log("We've got a scan:", data)
     dbScan(data)
+    history(upc).then(result => io.to(socket.id).emit("scanHistory", result)) // Seems like this one should work??
   });
 
   socket.on('hello!', () => {

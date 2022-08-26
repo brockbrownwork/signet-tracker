@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
 import signetLogo from './images/signet.png'
 import './App.css';
 
@@ -10,6 +11,7 @@ import io from 'socket.io-client';
 import KeystrokeListener from './components/keystrokeListener';
 import LocationDropdown from './components/locationDropdown';
 import OnlineIndicator from './components/onlineIndicator'
+import ScanHistory from './components/scanHistory'
 
 function importAll(r) {
   let images = {};
@@ -27,6 +29,7 @@ function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [bulletinBoard, setBulletinBoard] = useState('');
   const [location, setLocation] = useState('cell 1');
+  const [scanHistory, setScanHistory] = useState('');
   document.body.style = 'background: rgb(200, 200, 200)';
   document.title = 'Signet Tracking';
   useEffect(() => {
@@ -40,6 +43,10 @@ function App() {
     });
     socket.on('bulletinBoard', data => {
       setBulletinBoard(data);
+    });
+    socket.on("scanHistory", data => {
+      console.log("Got scan history: ", data);
+      setScanHistory(data);
     });
     
     return () => {
@@ -62,9 +69,9 @@ function App() {
     console.log("Data before sending:", data)
     socket.emit("scan", data);
   };
-  return (
+  return (  
     <div>
-    <Container style = {{textAlign:'center', verticalAlign: 'center'}}>
+    <Container style = {{textAlign:'center'}}>
       <Row>
         <Col>
           <img src = {signetLogo} width = "30%" style = {{paddingTop:"2.5%"}}/>
@@ -92,6 +99,11 @@ function App() {
       <Row>
         <Col>
           <OnlineIndicator connected = {isConnected}/>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <ScanHistory scanHistory = {scanHistory}/>
         </Col>
       </Row>
     </Container>
