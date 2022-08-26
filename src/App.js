@@ -9,6 +9,7 @@ import './App.css';
 import io from 'socket.io-client';
 import KeystrokeListener from './components/keystrokeListener';
 import LocationDropdown from './components/locationDropdown';
+import OnlineIndicator from './components/onlineIndicator'
 
 function importAll(r) {
   let images = {};
@@ -67,12 +68,12 @@ function App() {
       <Row>
         <Col>
           <img src = {signetLogo} width = "30%" style = {{paddingTop:"2.5%"}}/>
-          <h2 style = {{paddingTop: "20px", paddingBottom:"5px"}}>Tracking System</h2>
+          <h2 style = {{paddingTop: "20px", paddingBottom:"5px"}}>Tracking System </h2>
         </Col>
-        <Row>
-          <p>Current location: <LocationDropdown setLocation = {setLocation} location = {location}/></p>
-          <p>Bulletin board: {bulletinBoard}</p>
-        </Row>
+      </Row>
+      <Row>
+        <p>Current location: <LocationDropdown setLocation = {setLocation} location = {location}/></p>
+        <p>Bulletin board: {bulletinBoard}</p>
       </Row>
       <Row>
         <Col className="text-center">
@@ -81,11 +82,16 @@ function App() {
       <Row>
         <Col>
           <button onClick={ sendMessage }>Say hello!</button>
-      </Col>
+        </Col>
       </Row>
       <Row>
         <Col>
           <KeystrokeListener onScan = {onScan} location = {location}/>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <OnlineIndicator connected = {isConnected}/>
         </Col>
       </Row>
     </Container>
