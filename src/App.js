@@ -86,19 +86,19 @@ function App() {
         <Col className="text-center">
         </Col>
       </Row>
-      <Row>
+      {/* <Row>
         <Col>
           <button onClick={ sendMessage }>Say hello!</button>
+        </Col>
+      </Row> */}
+      <Row>
+        <Col>
+          <OnlineIndicator connected = {isConnected}/>
         </Col>
       </Row>
       <Row>
         <Col>
           <KeystrokeListener onScan = {onScan} location = {location}/>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <OnlineIndicator connected = {isConnected}/>
         </Col>
       </Row>
       <Row>
