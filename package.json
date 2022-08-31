@@ -9,6 +9,7 @@
     "bootstrap": "^5.2.0",
     "mongodb": "^4.9.0",
     "mongoose": "^6.5.2",
+    "nodemailer": "^6.7.8",
     "nodemon": "^2.0.19",
     "react": "^16.13.1",
     "react-bootstrap": "^2.5.0",
