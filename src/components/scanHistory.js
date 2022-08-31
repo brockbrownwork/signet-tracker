@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
-
+import { v4 as uuid } from 'uuid';
 
 function ScanHistory(props) {
-  let historyList = <></>
-  if (props.scanHistory){
-    console.log("console.dir of props.scanHistory[0]")
-    console.dir(props.scanHistory[0])
-    historyList = props.scanHistory.map(entry => <p>{entry.location}, {entry.date} </p>)
+  let historyList = ''
+  if (props.scanHistory) {
+    historyList = props.scanHistory.map(entry => <div key = {uuid()}>{entry.location}, {entry.date} </div>)
     console.log(historyList);
   }
   return (
     <div>
-        {historyList? historyList: ''}
+        {historyList != [] && historyList != ''? historyList: 'ack! no history'}
     </div>
   );
 }

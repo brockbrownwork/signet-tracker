@@ -62,7 +62,7 @@ function KeystrokeListener(props) {
 			setTextbox('');
 		}}>
 			<input ref = {ref} type = 'text' value = {textbox} onChange = {(e) => setTextbox(e.target.value)}/>
-			<input type = 'submit' value = 'submit' />
+			<input type = 'submit' value = {'scan to ' + props.location} />
 		</form>
 
     	</div>);
