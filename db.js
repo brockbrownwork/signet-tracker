@@ -7,6 +7,13 @@ mongoose.connect(url, () => {
 }, (error) => console.error("whoops,", error));
 
 async function dbScan(data) {
+  // Scans a upc to the database
+  // Data for a scan includes the following:
+  // - upc
+  // - timestamp
+  // - location
+  // - comments (should this be its own Schema?)
+  //      - also timestamps for those comments
   if (data.upc && data.location) {
   const scan = Scan(data)
   await scan.save();
@@ -17,6 +24,7 @@ async function dbScan(data) {
 }
 
 function history(upc) {
+  // returns the scan history of a upc
   const result = Scan.find({upc: upc}).sort({date: -1})
   return result
 }
@@ -34,4 +42,6 @@ if (require.main === module) {
   test()
 }
 
-module.exports = {test:test, dbScan:dbScan, history:history};
+module.exports = {test:test,
+                  dbScan:dbScan,
+                  history:history};

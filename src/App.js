@@ -13,17 +13,6 @@ import LocationDropdown from './components/locationDropdown';
 import OnlineIndicator from './components/onlineIndicator'
 import ScanHistory from './components/scanHistory'
 
-function importAll(r) {
-  let images = {};
-  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-  return images;
-}
-
-const getRandomProperty = (obj) => {
-  let keys = Object.keys(obj);
-  return obj[keys[Math.floor(Math.random() * keys.length)]];
-};
-
 const socket = io('10.250.200.126:3001');
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
